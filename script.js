@@ -1,13 +1,14 @@
-// Products Database
+// Products Database with Indian Rupee Prices
+// Exchange Rate: 1 USD ≈ ₹95.01
 const products = [
-    { id: 1, name: 'Wireless Headphones', price: 79.99, emoji: '🎧', description: 'High-quality sound with noise cancellation' },
-    { id: 2, name: 'Smartphone', price: 599.99, emoji: '📱', description: 'Latest model with advanced features' },
-    { id: 3, name: 'Laptop', price: 1099.99, emoji: '💻', description: 'Powerful performance for work and gaming' },
-    { id: 4, name: 'Smart Watch', price: 299.99, emoji: '⌚', description: 'Track fitness and stay connected' },
-    { id: 5, name: 'Tablet', price: 449.99, emoji: '📱', description: 'Perfect for entertainment and productivity' },
-    { id: 6, name: 'Camera', price: 899.99, emoji: '📷', description: 'Capture stunning photos and videos' },
-    { id: 7, name: 'Gaming Console', price: 499.99, emoji: '🎮', description: 'Next-gen gaming experience' },
-    { id: 8, name: 'Portable Speaker', price: 129.99, emoji: '🔊', description: 'Powerful sound on the go' }
+    { id: 1, name: 'Wireless Headphones', price: 7599, emoji: '🎧', description: 'High-quality sound with noise cancellation' },
+    { id: 2, name: 'Smartphone', price: 57049, emoji: '📱', description: 'Latest model with advanced features' },
+    { id: 3, name: 'Laptop', price: 104539, emoji: '💻', description: 'Powerful performance for work and gaming' },
+    { id: 4, name: 'Smart Watch', price: 28499, emoji: '⌚', description: 'Track fitness and stay connected' },
+    { id: 5, name: 'Tablet', price: 42749, emoji: '📱', description: 'Perfect for entertainment and productivity' },
+    { id: 6, name: 'Camera', price: 85539, emoji: '📷', description: 'Capture stunning photos and videos' },
+    { id: 7, name: 'Gaming Console', price: 47499, emoji: '🎮', description: 'Next-gen gaming experience' },
+    { id: 8, name: 'Portable Speaker', price: 12349, emoji: '🔊', description: 'Powerful sound on the go' }
 ];
 
 let cart = [];
@@ -31,7 +32,7 @@ function loadProducts() {
             <div class="product-info">
                 <div class="product-name">${product.name}</div>
                 <div class="product-description">${product.description}</div>
-                <div class="product-price">$${product.price.toFixed(2)}</div>
+                <div class="product-price">₹${product.price.toLocaleString('en-IN')}</div>
                 <div class="product-actions">
                     <input type="number" class="quantity-input" value="1" min="1" max="10" id="qty-${product.id}">
                     <button class="btn-secondary" onclick="addToCart(${product.id})">Add to Cart</button>
@@ -108,7 +109,7 @@ function displayCart() {
                 <div class="cart-item-image">${item.emoji}</div>
                 <div class="cart-item-details">
                     <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                    <div class="cart-item-price">₹${item.price.toLocaleString('en-IN')}</div>
                 </div>
                 <div class="cart-item-quantity">
                     <button class="qty-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">−</button>
@@ -128,14 +129,14 @@ function displayCart() {
 // Update Cart Summary
 function updateCartSummary() {
     const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    const shipping = subtotal > 0 ? 10 : 0;
-    const tax = subtotal * 0.1;
+    const shipping = subtotal > 0 ? 500 : 0; // ₹500 shipping
+    const tax = subtotal * 0.18; // 18% GST
     const total = subtotal + shipping + tax;
     
-    document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-    document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
-    document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
-    document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+    document.getElementById('subtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+    document.getElementById('shipping').textContent = `₹${shipping.toLocaleString('en-IN')}`;
+    document.getElementById('tax').textContent = `₹${tax.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+    document.getElementById('total').textContent = `₹${total.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
 }
 
 // Navigation
