@@ -1,14 +1,61 @@
-// Products Database with Indian Rupee Prices
-// Exchange Rate: 1 USD ≈ ₹95.01
+// Products Database with Real Images and Realistic Indian Prices
 const products = [
-    { id: 1, name: 'Wireless Headphones', price: 7599, emoji: '🎧', description: 'High-quality sound with noise cancellation' },
-    { id: 2, name: 'Smartphone', price: 57049, emoji: '📱', description: 'Latest model with advanced features' },
-    { id: 3, name: 'Laptop', price: 104539, emoji: '💻', description: 'Powerful performance for work and gaming' },
-    { id: 4, name: 'Smart Watch', price: 28499, emoji: '⌚', description: 'Track fitness and stay connected' },
-    { id: 5, name: 'Tablet', price: 42749, emoji: '📱', description: 'Perfect for entertainment and productivity' },
-    { id: 6, name: 'Camera', price: 85539, emoji: '📷', description: 'Capture stunning photos and videos' },
-    { id: 7, name: 'Gaming Console', price: 47499, emoji: '🎮', description: 'Next-gen gaming experience' },
-    { id: 8, name: 'Portable Speaker', price: 12349, emoji: '🔊', description: 'Powerful sound on the go' }
+    { 
+        id: 1, 
+        name: 'Wireless Headphones', 
+        price: 3000, 
+        description: 'Premium wireless headphones with noise cancellation',
+        image: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=500&h=500&fit=crop'
+    },
+    { 
+        id: 2, 
+        name: 'Smartphone', 
+        price: 35000, 
+        description: 'Latest smartphone with advanced features',
+        image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&h=500&fit=crop'
+    },
+    { 
+        id: 3, 
+        name: 'Laptop', 
+        price: 55000, 
+        description: 'Powerful laptop for work and gaming',
+        image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&h=500&fit=crop'
+    },
+    { 
+        id: 4, 
+        name: 'Smart Watch', 
+        price: 8000, 
+        description: 'Track fitness and stay connected',
+        image: 'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=500&h=500&fit=crop'
+    },
+    { 
+        id: 5, 
+        name: 'Tablet', 
+        price: 25000, 
+        description: 'Perfect for entertainment and productivity',
+        image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=500&h=500&fit=crop'
+    },
+    { 
+        id: 6, 
+        name: 'Camera', 
+        price: 35000, 
+        description: 'Capture stunning photos and videos',
+        image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=500&h=500&fit=crop'
+    },
+    { 
+        id: 7, 
+        name: 'Gaming Console', 
+        price: 40000, 
+        description: 'Next-gen gaming experience',
+        image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&h=500&fit=crop'
+    },
+    { 
+        id: 8, 
+        name: 'Portable Speaker', 
+        price: 3500, 
+        description: 'Powerful sound on the go',
+        image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?w=500&h=500&fit=crop'
+    }
 ];
 
 let cart = [];
@@ -28,7 +75,7 @@ function loadProducts() {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         productCard.innerHTML = `
-            <div class="product-image">${product.emoji}</div>
+            <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='https://via.placeholder.com/500x500?text=${product.name}'">
             <div class="product-info">
                 <div class="product-name">${product.name}</div>
                 <div class="product-description">${product.description}</div>
@@ -106,7 +153,7 @@ function displayCart() {
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
             cartItem.innerHTML = `
-                <div class="cart-item-image">${item.emoji}</div>
+                <img src="${item.image}" alt="${item.name}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;" onerror="this.src='https://via.placeholder.com/100x100?text=${item.name}'">
                 <div class="cart-item-details">
                     <div class="cart-item-name">${item.name}</div>
                     <div class="cart-item-price">₹${item.price.toLocaleString('en-IN')}</div>
